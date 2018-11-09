@@ -1,0 +1,31 @@
+#loginblock {
+    margin: 100px auto 0;
+    width: 400px;
+    height: 460px;
+    background: #f7f7f7;
+    padding: 16px 16px 16px;
+    
+}
+
+#regblock {
+    margin: 0px auto 0;
+    width: 800px;
+    height: 460px;
+    background: #f7f7f7;
+    padding: 16px 16px 16px;
+    
+}
+
+#loginimg {
+    display: block;
+    margin: 0px auto 16px; 
+    
+}
+
+.loginctrl {
+    margin-bottom: 16px;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
