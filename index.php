@@ -5,9 +5,7 @@ $module = getQueryVal('module', (empty($_SESSION['user']))?'login':'dashboard');
 $action = getQueryVal('action', 'default');
 if (!empty($type) && $type==='api'){
     include_once __DIR__.'/api/'.$module.'/Controller.php';
-    include_once __DIR__.'/api/dbapi.pdo.class.inc.php';
-    include_once __DIR__.'/api/Responce.php';
-    $db = new DBAPI();
+    include_once __DIR__.'/core/Responce.php';
     $controller = new Controller();
     $result;
     if (method_exists($controller, $action)){

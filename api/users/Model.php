@@ -6,16 +6,10 @@
  */
 class Model {
     
-    var $db;
-    
-    public function __construct() {
-        global $db;
-        $this->db = $db;
-    }
     
     public function getUsers(){
         $sql = "SELECT * FROM users";
-        return $this->db->getArray($sql);
+        return DB::getArray($sql);
     }
     
     public function getTypes(){

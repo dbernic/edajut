@@ -2,7 +2,8 @@
     <div  class="panel-body">
         <button class="btn btn-primary btn-block" onclick="showContent('dashboard');">Dashboard</button>
         <button class="btn btn-primary btn-block" onclick="showContent('users');">Users</button>
-        <button class="btn btn-primary btn-block" onclick="showContent('companies');">Companies</button>
-        <button class="btn btn-primary btn-block" onclick="showContent('devices');">Devices</button>
+        <button class="btn btn-primary btn-block" onclick="showContent('objects');">Objects</button>
+        <button class="btn btn-primary btn-block" onclick="showContent('products');">Users</button>
+        <button class="btn btn-primary btn-block" onclick="showContent('criteria');">Users</button>        
     </div>
 </div>

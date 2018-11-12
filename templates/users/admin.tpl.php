@@ -6,7 +6,6 @@ function initPage(){
         fillTable();
     });
     fillTypes();
-    fillCompanies();
 }
 
 function fillTable(){
@@ -15,7 +14,7 @@ function fillTable(){
         var tr = $('<tr></tr>');
         var idtd = $('<td></td>').text(this['id']);
         var logintd = $('<td></td>').text(this['login']);
-        var nametd = $('<td></td>').text(this['name']);
+        var nametd = $('<td></td>').text(this['name']+' '+this['surname']);
         var edittd = $('<td></td>').css('text-align', 'center');
 
         var editspan = $('<span onclick="edit('+this['id']+')"></span>').addClass('glyphicon glyphicon-pencil cursor-pointer');
@@ -35,17 +34,6 @@ function fillTypes(){
     });
 }
 
-function fillCompanies(){
-    getData('users', 'getCompanies', null, function(data){
-        data.unshift({id:0,name:''})
-        $.each(data, function(){
-            $('#companysel').append(
-                $('<option value='+this['id']+'>'+this['name']+'</>')
-            );
-        });
-    });
-}
-
 function edit(id = null){
     clearEdit();
     if (id !== null){        
@@ -55,11 +43,9 @@ function edit(id = null){
                 $('#idinp').val(this['id']);
                 $('#logininp').val(this['login']);
                 $('#nameinp').val(this['name']);
+                $('#surnameinp').val(this['surname']);                
                 $('#phoneinp').val(this['phone']);
-                $('#addrinp').val(this['address']);
-                $('#emailinp').val(this['email']);
                 $('#typesel').val(this['type']);
-                $('#companysel').val(this['company']); 
             }
         });
     }
@@ -71,34 +57,28 @@ function clearEdit(){
     $('#logininp').val('');
     $('#passinp').val('');
     $('#nameinp').val('');
+    $('#surnameinp').val('');
     $('#phoneinp').val('');
-    $('#addrinp').val('');
-    $('#emailinp').val('');
     $('#typesel').val(1);
-    $('#companysel').val(0);
 }
 
 function save(){
     var id = $('#idinp').val();
     var login = $('#logininp').val();
     var name = $('#nameinp').val();
+    var surname = $('#surnameinp').val();    
     var password= $('#passinp').val();
     var phone = $('#phoneinp').val();
-    var address = $('#addrinp').val();
-    var email = $('#emailinp').val();
     var type = $('#typesel').val();
-    var company = $('#companysel').val();
     
     var data = {
         id:id,
         login:login,
         name:name,
+        surname:surname,
         password:password,
         phone:phone,
-        address:address,
-        email:email,
-        type:type,
-        company:company
+        type:type
     };
     
     getData('users', 'saveUser', {data:data}, function(data){
@@ -153,33 +133,21 @@ function save(){
                 </div>
             </div>
             <div class="row topspace">
+                <div class="col-md-6 h5"><strong>Surname</strong></div>
+                <div class="col-md-6">
+                    <input class="form-control" id="surnameinp" />
+                </div>
+            </div>
+            <div class="row topspace">
                 <div class="col-md-6 h5"><strong>Phone</strong></div>
                 <div class="col-md-6">
                     <input class="form-control" id="phoneinp" />
                 </div>
             </div>
             <div class="row topspace">
-                <div class="col-md-6 h5"><strong>Address</strong></div>
-                <div class="col-md-6">
-                    <input class="form-control" id="addrinp" />
-                </div>
-            </div>
-            <div class="row topspace">
-                <div class="col-md-6 h5"><strong>Email</strong></div>
-                <div class="col-md-6">
-                    <input class="form-control" id="emailinp" />
-                </div>
-            </div>
-            <div class="row topspace">
                 <div class="col-md-6 h5"><strong>Type</strong></div>
                 <div class="col-md-6">
                     <select class="form-control" id="typesel"></select>
-                </div>
-            </div>
-            <div class="row topspace">
-                <div class="col-md-6 h5 "><strong>Company</strong></div>
-                <div class="col-md-6">
-                    <select class="form-control" id="companysel"></select>
                 </div>
             </div>
             <br/>

@@ -11,7 +11,7 @@ class DB {
 
    public static function getInstance(){
        if (self::$instance === null) {
-           self::$instance = new DBAPI();
+           self::$instance = new DB();
        }
        
        return self::$instance;
