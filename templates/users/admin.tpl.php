@@ -28,7 +28,7 @@ function fillTypes(){
     getData('users', 'getTypes', null, function(data){
         $.each(data, function(){
             $('#typesel').append(
-                $('<option value='+this['id']+'>'+this['type']+'</>')
+                $('<option value='+this+'>'+this+'</>')
             );
         });
     });
@@ -45,7 +45,7 @@ function edit(id = null){
                 $('#nameinp').val(this['name']);
                 $('#surnameinp').val(this['surname']);                
                 $('#phoneinp').val(this['phone']);
-                $('#typesel').val(this['type']);
+                $('#typesel').val(this['group']);
             }
         });
     }
@@ -69,7 +69,7 @@ function save(){
     var surname = $('#surnameinp').val();    
     var password= $('#passinp').val();
     var phone = $('#phoneinp').val();
-    var type = $('#typesel').val();
+    var group = $('#typesel').val();
     
     var data = {
         id:id,
@@ -78,7 +78,7 @@ function save(){
         surname:surname,
         password:password,
         phone:phone,
-        type:type
+        group:group
     };
     
     getData('users', 'saveUser', {data:data}, function(data){
@@ -89,11 +89,7 @@ function save(){
     showTable();
 }
 </script>
-<style>
-    .topspace{
-        margin-top: 8px;
-    }
-</style>
+
 <div class="row">
     <?php include __DIR__.'/../common/adminmenu.tpl.php';?>
     <div class="col-md-8">

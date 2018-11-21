@@ -7,33 +7,30 @@
  */
 class Auth {
     
-    private $groups;
+    public static $groups = ['admin', 'teacher', 'parent'];
     
-    private static $instance = null;
-    
-    public static function get(){
-        if(self::$instance===NULL) {
-            self::$instance = new Auth();
-        }
+    static function allow($groups = null){
         
-        return self::$instance;
-    } 
-    
-    
-    static function allow($groups){
-        if(is_array($groups)){
-            
-        }
+        if(Userdata::get()->getGroup() === null){
+            self::sendDeny();
+        } else if(is_array($groups)){
+            if (!in_array(Userdata::get()->getGroup(), $groups)){
+                self::sendDeny();
+            }
+        } else if(is_string($groups)){
+            if(Userdata::get()->getGroup() !== $groups){
+                self::sendDeny();
+            }
+        } 
+      
     }
     
     static function deny(){
-        
+        // TODO
     }
     
-    
-    public function __construct() {
-        $this->groups = ['admin', 'teacher', 'parent'];
+    private static function sendDeny(){
+        Responce::sendAuthError();
     }
-    
     
 }

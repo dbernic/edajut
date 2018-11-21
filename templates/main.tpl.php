@@ -1,6 +1,6 @@
 <?php global $module;
 $block = array();
-if (!empty($_SESSION['user'])) {
+if (Userdata::get()->getId() !== null) {
     $block[0]='style="display: none;"';
     $block[1]='';
 } else {
@@ -15,6 +15,7 @@ if (!empty($_SESSION['user'])) {
         <script src="/js/jquery-3.3.1.min.js"></script>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+        <link href="/css/toastr.min.css" rel="stylesheet">
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/main.css">
     </header>
@@ -48,7 +49,7 @@ if (!empty($_SESSION['user'])) {
             </div>
         </nav>
             <?php 
-                $file1 = __DIR__.'/'.$module.'/'.$_SESSION['user']['type'].'.tpl.php';
+                $file1 = __DIR__.'/'.$module.'/'.$_SESSION['user']['group'].'.tpl.php';
                 $file2 = __DIR__.'/'.$module.'/'.$module.'.tpl.php';
                                         
                 if (file_exists($file1)){
@@ -57,9 +58,10 @@ if (!empty($_SESSION['user'])) {
                     include $file2;
                 } else {
                     include __DIR__.'/login/login.tpl.php';
-                }
+                }               
             ?>
         </div>
     <script src="/js/main.js"></script>
+    <script src="/js/toastr.min.js"></script>
     </body>
 </html>

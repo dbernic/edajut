@@ -13,10 +13,11 @@ function login(){
                     loginFunc();
                 } else {
                     initPage();
+                    showMain();
                 }
                 $('#username').text(data.payload);
             } else {
-                // TODO show data.errorTxt
+                showAlert(data.errorTxt, 'Authentication error');
             }
         },
         'json'
@@ -35,9 +36,10 @@ function getData(module, action, data=null, func=null){
                 }
                 showMain();
             } else if (data.error === 1){
+                showAlert(data.errorTxt);
                 showLogin();
             } else {
-                // Show error
+                showAlert(data.errorTxt);
             }
         },
         'json'
@@ -55,6 +57,33 @@ function showContent(action){
     window.location.href = url;
 }
 
+
+function showAlert(body, header=null){
+    if (header === null){
+        $('#alert-head').text('');
+    } else {
+        $('#alert-head').text(header);        
+    }
+    
+    setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    showMethod: 'slideDown',
+                    positionClass: "toast-top-center",
+                    timeOut: 4000
+                };
+                toastr.error(body, header);
+
+    }, 2000);
+
+}
+
+function yesNo(text, callback = null){
+    var responce = confirm(text);
+    if (responce === true && callback !== null){
+        callback();
+    }
+}
 
 function showMain(){
     $('#login').hide();

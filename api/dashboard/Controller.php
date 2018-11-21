@@ -14,23 +14,5 @@ class Controller {
         $this->responce = new Responce();
         $this->responce->error = 0;
     }
-    
-    function getPassages(){        
-        if (empty($_SESSION['user'])){
-            $this->responce->error = 1;
-            return $this->responce;
-        }
-        
-        $this->responce->payload = $this->model->getPassages();
-        return $this->responce;
-    }
-    
-    function saveUser($data){
-        if (empty($_SESSION['user'])){
-            $this->responce->error = 1;
-            return $this->responce;
-        }        
-        $model->saveUser($data);
-        return $this->responce;
-    }
+
 }

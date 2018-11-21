@@ -6,16 +6,10 @@
  */
 class Model {
     
-    var $db;
-    
-    public function __construct() {
-        global $db;
-        $this->db = $db;
-    }
     
     public function checkPass($user, $pass){
-        $sql = "SELECT * FROM users u LEFT JOIN usertypes t on u.type=t.id WHERE login='".$user."'";
-        $user = $this->db->getArray($sql);
+        $sql = "SELECT * FROM users WHERE login='".$user."'";
+        $user = DB::get()->getArray($sql);
         if (!empty($user) && password_verify($pass, $user[0]['password'])){
             return $user[0];
         } else {

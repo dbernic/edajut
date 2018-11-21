@@ -3,20 +3,21 @@ session_start();
 $type = getQueryVal('type', '');
 $module = getQueryVal('module', (empty($_SESSION['user']))?'login':'dashboard');
 $action = getQueryVal('action', 'default');
+include_once __DIR__.'/core/dbapi.php';
+include_once __DIR__.'/core/Userdata.php';
 if (!empty($type) && $type==='api'){
+    include_once __DIR__.'/core/Auth.php';
     include_once __DIR__.'/api/'.$module.'/Controller.php';
+    include_once __DIR__.'/api/'.$module.'/Model.php';
     include_once __DIR__.'/core/Responce.php';
     $controller = new Controller();
     $result;
     if (method_exists($controller, $action)){
-        $result = $controller->$action();
+        $controller->$action();
         
     } else {
-        $result = new Responce();
-        $result->error = 2;
-        $result->errorTxt = "Wrong request";
+        Responce::sendError(2, 'Wrong request');
     }
-    echo json_encode($result);
 } else {
     include_once __DIR__.'/templates/main.tpl.php';
 }
