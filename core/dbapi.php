@@ -76,7 +76,7 @@ class DB {
     }
 
     function selectPaging($table, $offset, $limit, $whereStr = null, $whereArray = null) {
-
+        // TODO finish this method
         $where = $whereStr === null ? '' : $whereStr;
         $sql = "SELECT * FROM `$table` WHERE $where ";
     }
@@ -136,7 +136,7 @@ class DB {
     }
 
     function delete($table, $where) {
-        
+        //TODO implement
     }
 
 }

@@ -8,7 +8,13 @@ class Model {
     
     
     public function getProducts(){
-        return DB::get()->selectTable('products');
+        $data = filter_input(INPUT_POST, 'data');
+        $array = [
+            'clas_num'=> $data['class'],
+            'object_id'=>$data['object']
+        ];
+        $sql = 'SELECT * FROM projects WHERE clas_num=? AND object_id=?';
+        return DB::get()->selectPrepared($sql, $array);
     }
     
     public function getObjects(){

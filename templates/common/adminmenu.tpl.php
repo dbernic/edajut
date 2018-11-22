@@ -4,6 +4,5 @@
         <button class="btn btn-primary btn-block" onclick="showContent('users');">Users</button>
         <button class="btn btn-primary btn-block" onclick="showContent('objects');">Objects</button>
         <button class="btn btn-primary btn-block" onclick="showContent('products');">Products</button>
-        <button class="btn btn-primary btn-block" onclick="showContent('criteria');">Criteria</button>        
     </div>
 </div>

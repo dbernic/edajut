@@ -3,7 +3,7 @@ function initPage(){
 
 }
 </script>
-<div class="row">
+<div>
     <?php include __DIR__.'/../common/adminmenu.tpl.php';?>
     <div class="col-md-8">
     </div>
