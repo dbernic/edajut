@@ -14,7 +14,7 @@ class Controller {
     
     function getProducts(){
         Auth::allow(['admin','teacher']);
-        Responce::sendPayload($this->model->getProducts());  
+        Responce::sendPayload($this->model->getProducts(filter_input(INPUT_POST, 'data', FILTER_DEFAULT , FILTER_REQUIRE_ARRAY)));  
     }
 
     
@@ -23,10 +23,6 @@ class Controller {
         Responce::sendPayload($this->model->saveProduct($_POST['data']));
     }
     
-    function getObjects(){
-        Auth::allow();
-        Responce::sendPayload($this->model->getObjects());
-    }
     
     function deleteProduct(){
         Auth::allow('admin');

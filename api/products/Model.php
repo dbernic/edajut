@@ -7,18 +7,12 @@
 class Model {
     
     
-    public function getProducts(){
-        $data = filter_input(INPUT_POST, 'data');
-        $array = [
-            'clas_num'=> $data['class'],
-            'object_id'=>$data['object']
-        ];
-        $sql = 'SELECT * FROM projects WHERE clas_num=? AND object_id=?';
+    public function getProducts($data){
+//        $data = ;
+        $array = [$data['class'],$data['object']];
+        
+        $sql = 'SELECT * FROM products WHERE clas_num=? AND object_id=?';
         return DB::get()->selectPrepared($sql, $array);
-    }
-    
-    public function getObjects(){
-        return DB::get()->selectTable('objects');
     }
             
     public function saveProduct($data){
